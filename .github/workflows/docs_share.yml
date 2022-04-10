@@ -10,12 +10,6 @@ on:
       - ready_for_review
       - reopened
       - unlocked
-  pull_request_review:
-    types:
-      - submitted
-  check_suite:
-    types:
-      - completed
   status: {}
 jobs:
   build:
@@ -32,4 +26,4 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        sh ./.github/workflows/sample.kts
+        kotlin ./.github/workflows/sample.kts
