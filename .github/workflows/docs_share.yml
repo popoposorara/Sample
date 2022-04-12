@@ -27,15 +27,15 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         kotlin ./.github/workflows/sample.kts
-    - name: Commit files
+    - name: commit & push
       run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add .
-        git commit -m "generate file" -a
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: ${{ github.ref }}
+        git add -N . # 新規ファイルを含める
+        if ! git diff --exit-code --quiet
+        then
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "Update"
+          git push
+        fi
            
