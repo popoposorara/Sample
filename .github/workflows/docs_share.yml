@@ -22,6 +22,9 @@ jobs:
       with:
         distribution: 'temurin'
         java-version: '17'
+    - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
     - name: Run Script
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
