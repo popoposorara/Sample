@@ -28,7 +28,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        kotlin ./.github/workflows/sample.kts
+         kotlinc -script ./.github/workflows/sample.kts  -- -b "hoge"
     - name: commit & push
       run: |
         git add -N . # 新規ファイルを含める
