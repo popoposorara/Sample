@@ -13,7 +13,9 @@ import java.util.regex.Pattern
 // val readmeFirstLine = input.readLines().first()
 // output.writeText(readmeFirstLine)
 
+println("args.size:${args.size}")
 main()
+
 
 fun main() {
     val command = "find . -name *.pu"
