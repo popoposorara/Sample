@@ -13,6 +13,7 @@ import java.util.regex.Pattern
 // val readmeFirstLine = input.readLines().first()
 // output.writeText(readmeFirstLine)
 
+println("コメント")
 println("args.size:${args.size}")
 main()
 
