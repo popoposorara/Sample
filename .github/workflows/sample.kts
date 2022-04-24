@@ -13,12 +13,13 @@ import java.util.regex.Pattern
 // val readmeFirstLine = input.readLines().first()
 // output.writeText(readmeFirstLine)
 
-println("コメント")
-println("args.size:${args.size}")
-main()
+// Get the passed in path, i.e. "-d some/path" or use the current path.
+val branchName = if (args.contains("-b")) args[1 + args.indexOf("-b")]
+           else "main"
+main(branchName)
 
 
-fun main() {
+fun main(branchName:String) {
     val command = "find . -name *.pu"
     val result = Runtime.getRuntime().exec(command).let { process ->
         process.inputStream.use { stream ->
@@ -28,7 +29,7 @@ fun main() {
                         hasIncludeFunction(it)
                     }
                     .forEach {
-                        witeText(it)
+                        witeText(it,branchName)
                     }
             }
         }
@@ -46,9 +47,9 @@ fun hasIncludeFunction(filePath: String): Boolean {
     }
 }
 
-fun witeText(filePath: String) {
+fun witeText(filePath: String,branchName:String) {
     val input = File(filePath)
-    val output = File(filePath + "_generated")
+    val output = File(filePath + "_generated_${branchName}")
     var branch: String? = null
     input.useLines { lineSequences: Sequence<String> ->
         output.bufferedWriter().apply {
